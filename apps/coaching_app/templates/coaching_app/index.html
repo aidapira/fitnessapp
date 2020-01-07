@@ -71,7 +71,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <p style="margin-bottom: 0;" class="navbar-brand">Start Your Fitness Journey</p>
+      <p style="margin-bottom: 0;" class="navbar-brand">Start Your Fitness Journey Today!</p>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -83,13 +83,18 @@
           <li class="nav-item">
             <a class="nav-link" href="/login">My Account</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
           {% endif %}
+          {% if "username" not in request.session %}
           <li class="nav-item">
             <a class="nav-link" href="/login_page">Sign in</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login_page#toregister">Sign up!</a>
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -230,7 +235,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        <p class="m-0 text-center text-white">Copyright &copy; My Fitness Journey 2019</p>
       </div>
       <!-- /.container -->
     </footer>
