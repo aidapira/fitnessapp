@@ -42,7 +42,7 @@ def user_process(request):
                            extra_tags="register")
             return redirect('/login_page#toregister')
         pw_hash = bcrypt.hashpw(
-            request.POST["password"].encode(), bcrypt.gensalt())
+            request.POST["password"].encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         new_user = User.objects.create(
             first_name=first_name, last_name=last_name, username=username, email=email, password=pw_hash)
         request.session["new_user_id"] = new_user.id
@@ -64,7 +64,7 @@ def login_process(request):
         messages.error(
             request, 'Email or password does not match', extra_tags="login")
         return redirect('/login_page')
-    if bcrypt.checkpw(request.POST['password'].encode(), matched_user[0].password.encode()):
+    if bcrypt.checkpw(request.POST['password'].encode('utf-8'), matched_user[0].password.encode('utf-8')):
         request.session['username'] = request.POST['username']
         return redirect('/login')
     else:
@@ -77,7 +77,7 @@ def login_process(request):
 def login(request):
     context = {
         "reg_user": User.objects.filter(username=request.session["username"])[0],
-        "users_post": Post.objects.all()
+        "users_post": Post.objects.all().order_by("created_at")
     }
     return render(request, 'coaching_app/everyone_account.html', context)
 

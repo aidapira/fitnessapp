@@ -59,9 +59,11 @@ class Goal(models.Model):
 
 class Post(models.Model):
     post_title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.TextField()
     post_pic = models.ImageField(upload_to='images/')
     posted_by = models.ForeignKey(User, related_name="posts", on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
     
