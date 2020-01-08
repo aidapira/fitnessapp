@@ -77,7 +77,7 @@ def login_process(request):
 def login(request):
     context = {
         "reg_user": User.objects.filter(username=request.session["username"])[0],
-        "users_post": Post.objects.all().order_by("created_at")
+        "users_post": Post.objects.all().order_by("-created_at")
     }
     return render(request, 'coaching_app/everyone_account.html', context)
 
@@ -96,11 +96,12 @@ def survey_reply(request):
 
 
 def my_account(request):
+    reg_user = User.objects.filter(username=request.session["username"])[0]
     context = {
         "reg_user": User.objects.filter(username=request.session["username"])[0],
         # "new_user": User.objects.get(id=userid)
-        "users_post": Post.objects.all(),
-        "last_post": Post.objects.last()
+        "users_post": Post.objects.filter(posted_by=reg_user).order_by("-created_at")[1:],
+        "last_post": Post.objects.filter(posted_by=reg_user).last()
     }
     return render(request, "coaching_app/my_account.html", context)
 
