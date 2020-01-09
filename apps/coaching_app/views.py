@@ -106,9 +106,23 @@ def my_account(request):
     return render(request, "coaching_app/my_account.html", context)
 
 
-def user_account(request):
-    return render(request, "coaching_app/user_account.html")
+def user_account(request, user_id):
+    request.session['userid'] = user_id
+    selected_user = User.objects.get(id=user_id)
+    context = {
+        "selected_user": User.objects.get(id=user_id),
+        "selected_user_posts": Post.objects.filter(posted_by=selected_user).order_by("-created_at")[1:],
+        "last_post": Post.objects.filter(posted_by=selected_user).last()
+    }
+    return render(request, "coaching_app/user_account.html", context)
 
+def view(request, post_id):
+    request.session['postid'] = post_id
+    context = {
+        "selected_post": Post.objects.get(id=post_id)
+    }
+
+    return render(request, 'coaching_app/single_post.html', context)
 
 def no_survey_reply(request):
     return render(request, "coaching_app/no_survey_reply.html")
@@ -184,6 +198,14 @@ def new_post(request):
     print(post_created)
     print("*************")
     return redirect('/my_account')
+
+def delete(request, post_id):
+    print("delete function works")
+    deleted_post = Post.objects.get(id=post_id)
+    deleted_post.delete()
+    print("*"*100)
+    return redirect('/login')
+
 
 
 # def post_image_view(request): 

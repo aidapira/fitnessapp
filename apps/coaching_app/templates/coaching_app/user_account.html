@@ -30,7 +30,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Fitness logo</a>
+      <a class="navbar-brand" style="color: white;">My Fitness Journey</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
         aria-label="Toggle navigation">
@@ -42,83 +42,105 @@
             <a class="nav-link" href="/">BB Coach</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/login">Home</a>
+            <a class="nav-link" href="/logout">Logout</a>
           </li>
       </div>
   </nav>
+
+  
 
   <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">User's first name</h1>
+    <h1 class="mt-4 mb-3">{{selected_user.first_name}} {{selected_user.last_name}}</h1>
+
+    
+    <!-- {% for post in users_post %}
+    <p>{{post.post_title}}</p>
+    <img src="/media/{{post.post_pic}}" alt="post pic">
+    {% endfor %} -->
+   
+    <!-- <p>{{last_post.post_title}}</p> -->
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Add Friend!</a>
+        <a href="/login">Home</a>
       </li>
-      <li class="breadcrumb-item active">User's Username</li>
+      <!-- <li class="breadcrumb-item">
+        <a href="/login">Notifications</a>
+      </li> -->
+      <li class="breadcrumb-item">
+        <a href="/createpost">Create a Post</a>
+      </li>
+      <li class="breadcrumb-item active">{{selected_user.username}}</li>
     </ol>
 
     <!-- Portfolio Item Row -->
-    <div class="row">
 
-      <div class="col-md-8">
-        <img class="img-fluid" src="http://placehold.it/750x500" alt="">
-      </div>
-
-      <div class="col-md-4">
-        <h3 class="my-3">Post Title</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna
-          varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu
-          convallis placerat, felis enim.</p>
-      </div>
-
-    </div>
     <!-- /.row -->
 
     <!-- Related Projects Row -->
-    <h3 class="my-4">User's first name's Fitness Posts</h3>
+    <h3 class="my-4">{{selected_user.username}}'s Fitness Posts</h3>
+    
+    <div>
+      <div class="row">
 
-    <div class="row">
+        <div class="col-md-8" style="height: 400px; width: 760px; margin-bottom: 20px;">
+          <a href="/posts/{{last_post.id}}">
+            <img src="/media/{{last_post.post_pic}}" alt="post pic" style="height: 100%; width: 100%;">
+            <!-- <img class="img-fluid" src="post.jpg" alt="abs"> -->
+          </a>
+        </div>
 
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </a>
+        <div class="col-md-4">
+          <h3 class="my-3">{{last_post.post_title}}</h3>
+          <p>{{last_post.description}}</p>
+        </div>
+
       </div>
-
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </a>
+      <div class="row">
+        {% for post in selected_user_posts %}
+        
+        <div  class="col-md-3 col-sm-6 mb-4">
+          <a href="/posts/{{post.id}}">
+            <img style="width:255px; height:175px;" class="img-fluid" src="/media/{{post.post_pic}}" alt="post pic">
+          </a>
+        </div>
+        {% endfor%}
+        <!-- 
+          <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+              <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div>
+          
+          <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+              <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div>
+          
+          <div class="col-md-3 col-sm-6 mb-4">
+            <a href="#">
+              <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+            </a>
+          </div> -->
+          
+        </div>
       </div>
-
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </a>
-      </div>
-
-      <div class="col-md-3 col-sm-6 mb-4">
-        <a href="#">
-          <img class="img-fluid" src="http://placehold.it/500x300" alt="">
-        </a>
-      </div>
-
-    </div>
     <!-- /.row -->
 
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
+  <!-- Footer
   <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
     <!-- /.container -->
-  </footer>
+  <!-- </footer> -->
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

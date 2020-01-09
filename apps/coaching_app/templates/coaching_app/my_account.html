@@ -87,8 +87,9 @@
       <div class="row">
 
         <div class="col-md-8" style="height: 400px; width: 760px; margin-bottom: 20px;">
-          <img src="/media/{{last_post.post_pic}}" alt="post pic" style="height: 100%; width: 100%;">
-          <!-- <img class="img-fluid" src="post.jpg" alt="abs"> -->
+          <a href="/posts/{{last_post.id}}">
+            <img src="/media/{{last_post.post_pic}}" alt="post pic" style="height: 100%; width: 100%;">
+          </a>
         </div>
 
         <div class="col-md-4">
@@ -101,7 +102,7 @@
         {% for post in users_post %}
         
         <div  class="col-md-3 col-sm-6 mb-4">
-          <a href="#">
+          <a href="/posts/{{post.id}}">
             <img style="width:255px; height:175px;" class="img-fluid" src="/media/{{post.post_pic}}" alt="post pic">
           </a>
         </div>

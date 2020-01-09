@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^survey$', views.survey),
     url(r'^survey_reply$', views.survey_reply),
     url(r'^my_account$', views.my_account),
-    url(r'^user_account$', views.user_account),
+    url(r'^users/(?P<user_id>\d+)$', views.user_account),
     url(r'^no$', views.no_survey_reply),
     url(r'^user/update/(?P<userid>\w+)$', views.update),
     url(r'^user/edit/(?P<userid>\w+)$', views.edit_account),
@@ -29,7 +29,10 @@ urlpatterns = [
     # url(r'^createpost$', views.createpost)
     url(r'^search', views.search),
     url(r'^createpost$', views.create_post),
-    url(r'^newpost$', views.new_post)
+    url(r'^newpost$', views.new_post),
+    url(r'^remove/(?P<post_id>\d+)$', views.delete),
+    url(r'^posts/(?P<post_id>\d+)$',views.view),
+
 ]
 
 # urlpatterns = [ 
